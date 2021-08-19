@@ -55,17 +55,15 @@ def read_root():
     return {"Hello": "World"}
 
 @app.get("/inv/{item_val}")
-def read_root(item_val: int = Path(None, description="The inventroy item stash no.", gt=0)):
+def read_inventory(item_val: int = Path(None, description="The inventroy item stash no.", gt=0)):
     return inventory[item_val]
 
 @app.get("/inv-by-name")
-def read_root(item_val_name: str):
+def read_inventory_by_name(item_val_name: str):
     for item_val in inventory:
         if inventory[item_val]["name"] == item_val_name:
             return inventory[item_val]
     return HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Item not found")
-
-@app.get("/inv-by-name/{item_val_name}")
 
 @app.post("/create-item/{item_id}")
 def create_item(item_id:int, item: Item):
