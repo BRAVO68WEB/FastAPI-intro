@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+ujson
+aiofiles
+asyncio
+requests
